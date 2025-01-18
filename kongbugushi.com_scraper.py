@@ -18,7 +18,7 @@ def scrape_content(url):
             return None
         
         content_list = content_div.find_all('p')
-        content_text = '\n'.join(p.get_text().strip() for p in content_list)
+        content_text = '\n  '.join(p.get_text().strip() for p in content_list)
         
         return content_text
         
@@ -56,9 +56,9 @@ def main(base_url):
                     else:
                         href = f'{base_url}/{href}'
                 
-                    print(f"Scraping: {title}")
-                    
-                    f.write(f"{title}\n\n")
+                    titleNew = "".join(title.strip().split("_"))
+                    print(f"Scraping: {titleNew}")
+                    f.write(f"{titleNew}\n\n")
                     
                     content = scrape_content(href)
                     if content:
